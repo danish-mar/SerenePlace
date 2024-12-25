@@ -104,17 +104,21 @@ class Character:
             file_name = f'saves/character_{self.name.lower().replace(" ", "_")}_cartridge.pkl'
 
             if os.path.exists(file_name):
+
                 with open(file_name, 'rb') as file:
                     character_data = pickle.load(file)
                     self.name = character_data["name"]
                     self.profile = character_data["profile"]
                     self.mood = character_data["mood"]
                     self.history = character_data["history"]
-                    print(self.history)
                     self.ml.message(f"Character data loaded for {self.name} from {file_name}")
                     self.ai.reboot(self.history)
+                    self.generate_response("Info : the player connected to the world again greet them")
 
             else:
                 self.ml.warning(f"No saved data found for character {self.name}")
         except Exception as e:
             self.ml.error(f"Failed to load character data: {e}")
+
+        finally:
+            print(self.generate_response("CONTEXT: player glitched into the game again"))

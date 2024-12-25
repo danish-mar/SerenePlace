@@ -20,7 +20,7 @@ if __name__ == "__main__":
     character = Character(profile="You are Keqing, Yuheng of the liyue qixing, u moods is defined by putting mood inside astresks, like *blushing* etc ", mood="happy", api_key=api_key, ml=ml)
 
     # Player message
-    player_message = "Oye babe, how are you doing... i love you...! *now u are angry*"
+    player_message = "Oye babe, how are you doin..."
 
     # Generate the character's response
     response = character.generate_response(player_message)
