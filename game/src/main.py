@@ -5,15 +5,26 @@ from game.src import MoeLogger
 from colorama import Fore, Style
 from game.src.generative.core import GenerativeAi
 from game.assets.characters.Character import Character
+from dotenv import load_dotenv
 
 
 def main():
-    LOG_FILE = "/home/keqing/projects/SerenePlace/logs/MoeLogs.logs"
+    LOG_FILE = "moe.logs"
 
     ml = MoeLogger.MoeLogger(error_color=Fore.RED, message_color=Fore.GREEN, warning_color=Fore.YELLOW, file=LOG_FILE)
 
-    # setting the api keys
-    api_key = os.getenv("API_KEY")
+    # Load environment variables from .env file
+    load_dotenv()
+
+    # Now access the API key:
+    api_key = os.getenv('API_KEY')
+
+    if api_key:
+        print("API Key loaded successfully!")
+
+    else:
+        print("API Key error")
+        exit(1)  # Exit with an error code
 
     # setting up player
     player_name = input("Please Enter Your Name to log Back in! : ")
